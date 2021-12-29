@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "3ed85e54-5fce-4363-b0d6-54c572ccfbed",
+		"name": "Rero2021",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Persona",
+			"item": [
+				{
+					"name": "Listar todas las personas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://rqcel20s6d.execute-api.us-east-1.amazonaws.com/dev/api/reto/personas",
+							"protocol": "https",
+							"host": [
+								"rqcel20s6d",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"reto",
+								"personas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Persona por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://rqcel20s6d.execute-api.us-east-1.amazonaws.com/dev/api/reto/people/{id}",
+							"protocol": "https",
+							"host": [
+								"rqcel20s6d",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"reto",
+								"people",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear persona",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nombre\": \"Felipe Madueño\",\r\n        \"color_cabello\": \"n/a\",\r\n        \"altura\": \"96\",\r\n        \"url\": \"https://swapi.py4e.com/api/people/3/\",\r\n        \"fecha_cumpleaños\": \"33BBY\",\r\n        \"peso\": \"32\",\r\n        \"peliculas\": [\r\n            \"https://swapi.py4e.com/api/films/1/\",\r\n            \"https://swapi.py4e.com/api/films/2/\",\r\n            \"https://swapi.py4e.com/api/films/3/\",\r\n            \"https://swapi.py4e.com/api/films/4/\",\r\n            \"https://swapi.py4e.com/api/films/5/\",\r\n            \"https://swapi.py4e.com/api/films/6/\",\r\n            \"https://swapi.py4e.com/api/films/7/\"\r\n        ],\r\n        \"vehículos\": [],\r\n        \"editado\": \"2014-12-20T21:17:50.311000Z\",\r\n        \"color_piel\": \"white, blue\",\r\n        \"especies\": [\r\n            \"https://swapi.py4e.com/api/species/2/\"\r\n        ],\r\n        \"creado\": \"2014-12-10T15:11:50.376000Z\",\r\n        \"color_ojos\": \"red\",\r\n        \"pais_natal\": \"https://swapi.py4e.com/api/planets/8/\",\r\n        \"naves_esterales\": [],\r\n        \"genero\": \"n/a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rqcel20s6d.execute-api.us-east-1.amazonaws.com/dev/api/reto/personas",
+							"protocol": "https",
+							"host": [
+								"rqcel20s6d",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"reto",
+								"personas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pelicula",
+			"item": [
+				{
+					"name": "Listar todas las peliculas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://rqcel20s6d.execute-api.us-east-1.amazonaws.com/dev/api/reto/peliculas",
+							"protocol": "https",
+							"host": [
+								"rqcel20s6d",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"reto",
+								"peliculas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Pelicula por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://rqcel20s6d.execute-api.us-east-1.amazonaws.com/dev/api/reto/films/{id}",
+							"protocol": "https",
+							"host": [
+								"rqcel20s6d",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"reto",
+								"films",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Pelicula",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
