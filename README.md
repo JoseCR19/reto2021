@@ -62,4 +62,7 @@ $ sls deploy --verbose
 ```
 ## Peuabas
 - Para correr las pruebas unitarias utilizaremos el siguiente comando.
+***
+```
 $ npm run test
+```
