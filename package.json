@@ -12,7 +12,7 @@
     "serverless-offline": "^8.3.1"
   },
   "scripts": {
-    "test": ""
+    "test": "serverless-bundle test"
   },
   "keywords": [],
   "author": "",
