@@ -10,7 +10,7 @@ const Dynamo = {
         }
         const data = await dynamodb.get(params).promise();
         if(!data || !data.Item){
-            throw Error(`Hubo un error al obtener los datos para el ID : ${ID} de la tabla `)
+            return null;
         }
         return data.Item;
     },
@@ -20,7 +20,7 @@ const Dynamo = {
         }
         const data = await dynamodb.scan(params).promise();
         if(!data || !data.Items){
-            throw Error(`Hubo un error al obtener los datos de la tabla`)
+            return null;
         }
         return data.Items;
     },
@@ -31,7 +31,7 @@ const Dynamo = {
         };
         const res = await dynamodb.put(params).promise();
         if (!res) {
-            throw Error(`Hubo un error al crear los datos en la table`);
+            return null;
         }
         return res;
     },

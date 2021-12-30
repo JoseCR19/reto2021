@@ -8,12 +8,12 @@ class persona {
     color_cabello;
     color_piel;
     color_ojos;
-    fecha_cumpleaños;
+    fecha_cumple;
     genero;
     pais_natal;
     peliculas;
     especies;
-    vehículos;
+    vehiculos;
     naves_esterales;
     creado;
     editado;

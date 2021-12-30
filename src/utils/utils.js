@@ -12,12 +12,12 @@ function buildPersona(data,id){
     personaModel.color_cabello= data.hair_color;
     personaModel.color_piel= data.skin_color;
     personaModel.color_ojos= data.eye_color;
-    personaModel.fecha_cumpleaños= data.birth_year;
+    personaModel.fecha_cumple= data.birth_year;
     personaModel.genero= data.gender;
     personaModel.pais_natal= data.homeworld;
     personaModel.peliculas= data.films;
     personaModel.especies= data.species;
-    personaModel.vehículos= data.vehicles;
+    personaModel.vehiculos= data.vehicles;
     personaModel.naves_esterales= data.starships;
     personaModel.creado= data.created;
     personaModel.editado= data.edited;
@@ -51,11 +51,11 @@ async function obtenerDatosAPI(nombre,id){
         let response = await axios.get(url);
         if(nombre=="people"){
             let builddata = await buildPersona(response.data,id);
-            personaAgregar.addPersona(builddata);
+            let responseAdd = await personaAgregar.addPersona(builddata);
             return builddata;
         }else{
             let builddata = await buildPeliculas(response.data,id);
-            peliculaAgregar.addPelicula(builddata);
+            let responseAdd = await peliculaAgregar.addPelicula(builddata);
             return builddata;
         }
     }catch(error){
@@ -63,12 +63,13 @@ async function obtenerDatosAPI(nombre,id){
     }
 }
 async function listorcreate(nombre,id){
+    
     switch (nombre) {
         case "people":
-            return listorcreatePersona(nombre,id);
+            return await listorcreatePersona(nombre,id);
             break;
         case "films":
-            return listorcreatePelicula(nombre,id);
+            return await listorcreatePelicula(nombre,id);
             break;
     }
 }
@@ -93,6 +94,5 @@ async function listorcreatePelicula(nombre,id){
     }
 }
 module.exports ={
-    listorcreate,
-    buildPersona
+    listorcreate
 };
