@@ -1,23 +1,11 @@
-const AWS = require("aws-sdk");
-const getPelicula = async(event)=>{
-    const dynamodb = new AWS.DynamoDB.DocumentClient();
-    const id= event;
-    const result = await dynamodb.get({
-        TableName: "Pelicula",
-        Key: {
-            id
-        }
-    }).promise();
-    if(JSON.stringify(result) === '{}'){
-        const pelicula="";
-        console.info("no se encuentra");
-        return pelicula;
-    }else{
-        console.info("hay datos");
-        const pelicula = result.Item;
-        return pelicula
-    }
-};  
-module.exports ={
-    getPelicula,
-}
+const Dynamo = require('../utils/dynamoDbConfig');
+const Responses = require('../utils/reponse');
+exports.getPelicula = async(event)=>{
+    if(!event)
+        return Responses._400({ message: 'Se requiere el ID' });
+    const id = event;
+    const result = await Dynamo.get(id, process.env.tableNamePelicula).catch(err => {
+        return null;
+    });
+    return result;
+};

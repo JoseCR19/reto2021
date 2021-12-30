@@ -53,6 +53,6 @@ env.yml
 
 # packege json
 
-.package-lock
+package-lock.json
 
 

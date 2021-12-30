@@ -1,12 +1,11 @@
-const personaModel = require('../../model/persona')
-const peliculaModel = require('../../model/pelicula')
+const peliculaModel = require('../model/pelicula');
+const personaModel = require('../model/persona');
 const findByIdPersona = require('../Persona/getPersona');
 const personaAgregar = require('../Persona/addPersona');
 const findByIdPelicula = require('../Peliculas/getPelicula');
 const peliculaAgregar = require('../Peliculas/addPelicula');
 const axios = require("axios");
-'use strict';
-async function buildPersona(data,id){
+function buildPersona(data,id){
     personaModel.nombre= data.name;
     personaModel.altura= data.height;
     personaModel.peso= data.mass;
@@ -50,24 +49,18 @@ async function obtenerDatosAPI(nombre,id){
     try{
         const url = "https://swapi.py4e.com/api/"+nombre+"/"+id+"/";
         let response = await axios.get(url);
-        console.log(nombre);
         if(nombre=="people"){
-            console.log("ingresa a ",nombre);
             let builddata = await buildPersona(response.data,id);
             personaAgregar.addPersona(builddata);
             return builddata;
         }else{
-            console.log("ingresa a ",nombre);
             let builddata = await buildPeliculas(response.data,id);
-            peliculaAgregar.addPelicula(builddata)
+            peliculaAgregar.addPelicula(builddata);
             return builddata;
         }
     }catch(error){
-        console.log(error);
-        const mensaje = "No existe registro";
-        return mensaje;
+        return null;
     }
-    
 }
 async function listorcreate(nombre,id){
     switch (nombre) {
@@ -81,7 +74,7 @@ async function listorcreate(nombre,id){
 }
 async function listorcreatePersona(nombre,id){
     const result = await findByIdPersona.getPersona(id);
-    if(result==""){
+    if(result==null){
         const persona = await obtenerDatosAPI(nombre,id);
         return persona;
     }else{
@@ -91,15 +84,15 @@ async function listorcreatePersona(nombre,id){
 }
 async function listorcreatePelicula(nombre,id){
     const result = await findByIdPelicula.getPelicula(id);
-    if(result==""){
+    if(result==null){
         const pelicula = await obtenerDatosAPI(nombre,id);
         return pelicula;
     }else{
         const pelicula= result;
         return pelicula;
     }
-} 
-
+}
 module.exports ={
     listorcreate,
-}
+    buildPersona
+};

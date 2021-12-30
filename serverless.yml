@@ -20,11 +20,15 @@ org: deimusdark
 # Check out our docs for more details
 frameworkVersion: '2'
 
+
 provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
   region: us-east-1
+  environment:
+    tableNamePersona: Personas
+    tableNamePelicula: Pelicula
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -34,9 +38,7 @@ provider:
         - arn:aws:dynamodb:us-east-1:153592805274:table/Pelicula
 
 plugins:
-  - serverless-auto-swagger
   - serverless-offline
-  - serverless-bundle
 functions:
   getDatos:
     handler: src/handler.obtenerDatos

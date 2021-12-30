@@ -1,30 +1,10 @@
-const AWS = require("aws-sdk");
-const getPeliculas = async (event) =>{
-    const dynamodb = new AWS.DynamoDB.DocumentClient();
-    try{
-        const result = await dynamodb.scan({
-            TableName: "Pelicula"
-        })
-        .promise();
-        const Peliculas = result.Items;
-        return{
-            statusCode:200,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                // "Access-Control-Allow-Credentials": true,
-                'Access-Control-Allow-Headers': 'X-PINGOTHER, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, X-Amz-Date, X-Api-Key, X-Amz-Security-Token',
-                'Access-Control-Allow-Methods': 'POST, PUT, GET, OPTIONS'
-              },
-            body:JSON.stringify({
-                body:Peliculas
-            })
-        };
-    }catch(error){
-        console.error(error);
-        const errores = "error:" + error;
-        return {errores}
-    }
+const Dynamo = require('../utils/dynamoDbConfig');
+const Responses = require('../utils/reponse');
+exports.getPeliculas =  async ( event,context,callback ) => {
+    const body = await Dynamo.getAll(process.env.tableNamePelicula).catch(err =>{
+        return null;
+    });
+    if(!body)
+        return Responses._204({message:'No hay registros para la tabla: Pelicula'});
+    return Responses._200({body});
 };
-module.exports = {
-    getPeliculas
-}

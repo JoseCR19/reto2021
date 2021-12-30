@@ -1,46 +1,27 @@
 const {v4} = require('uuid');
-const AWS = require('aws-sdk');
-const addPelicula = async(event)=>{
-    const dynamodb = new AWS.DynamoDB.DocumentClient();
-    
+const Dynamo = require('../utils/dynamoDbConfig');
+const Responses = require('../utils/reponse');
+const addPelicula = async( event ) => {
     const {id, titulo,episodio_id, descripcion, director,productor,fecha_lanzamiento,creado,editado,url, vehiculos,especies,naves_espaciales,planetas,caracteres} = event;
     const fecha_creacion = new Date();
     const peliculaModel = {
         id, titulo,episodio_id, descripcion, director,productor,fecha_lanzamiento,creado,editado,url, vehiculos,especies,naves_espaciales,planetas,caracteres,fecha_creacion
     };
-    await dynamodb.put({
-        TableName: 'Pelicula',
-        Item: peliculaModel
-    }).promise()
+    Dynamo.create(peliculaModel,process.env.tableNamePelicula);
 };
-const addPeliculaPost= async(event)=>{
-    const dynamodb = new AWS.DynamoDB.DocumentClient();
+const addPeliculaPost = async( event ) => {
     const {titulo,episodio_id, descripcion, director,productor,fecha_lanzamiento,creado,editado,url, vehiculos,especies,naves_espaciales,planetas,caracteres} = JSON.parse(event.body);
     const fecha_creacion = new Date();
     const id = v4();
     const peliculaModel = {
         id, titulo,episodio_id, descripcion, director,productor,fecha_lanzamiento,creado,editado,url, vehiculos,especies,naves_espaciales,planetas,caracteres,fecha_creacion
     };
-    await dynamodb.put({
-        TableName: 'Pelicula',
-        Item: peliculaModel
-    }).promise()
-    return {
-        statusCode: 200,
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            // "Access-Control-Allow-Credentials": true,
-            'Access-Control-Allow-Headers': 'X-PINGOTHER, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, X-Amz-Date, X-Api-Key, X-Amz-Security-Token',
-            'Access-Control-Allow-Methods': 'POST, PUT, GET, OPTIONS'
-          },
-        body: JSON.stringify(
-          {
-            body : peliculaModel,
-          },
-          null,
-          2
-        ),
-      };
+    const persona = await Dynamo.create(peliculaModel,process.env.tableNamePelicula).catch(err=>{
+        return null;
+    });
+    if (!persona)
+        return Responses._400({ message: 'No se pudo regsitraer' });
+    return Responses._200({ persona });
 };
 module.exports ={
     addPelicula,
