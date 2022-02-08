@@ -1,4 +1,5 @@
 import * as handler from '../src/handler';
+
 test('obtenerDatos', async () => {
   const pathParameters = { pathParameters: { name: 'people', id: '1' }};
   const context = 'context';

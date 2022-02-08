@@ -5,6 +5,7 @@ const personaAgregar = require('../Persona/addPersona');
 const findByIdPelicula = require('../Peliculas/getPelicula');
 const peliculaAgregar = require('../Peliculas/addPelicula');
 const axios = require("axios");
+
 function buildPersona(data,id){
     personaModel.nombre= data.name;
     personaModel.altura= data.height;
@@ -26,6 +27,7 @@ function buildPersona(data,id){
     personaModel.created= new Date();
     return personaModel;
 };
+
 function buildPeliculas(data,id){
     peliculaModel.titulo= data.title;
     peliculaModel.episodio_id= data.episode_id;
@@ -45,6 +47,7 @@ function buildPeliculas(data,id){
     peliculaModel.fecha_creacion = new Date();
     return peliculaModel;
 }
+
 async function obtenerDatosAPI(nombre,id){
     try{
         const url = "https://swapi.py4e.com/api/"+nombre+"/"+id+"/";
@@ -62,6 +65,7 @@ async function obtenerDatosAPI(nombre,id){
         return null;
     }
 }
+
 async function listorcreate(nombre,id){
     
     switch (nombre) {
@@ -73,6 +77,7 @@ async function listorcreate(nombre,id){
             break;
     }
 }
+
 async function listorcreatePersona(nombre,id){
     const result = await findByIdPersona.getPersona(id);
     if(result==null){
@@ -83,6 +88,7 @@ async function listorcreatePersona(nombre,id){
         return persona;
     }
 }
+
 async function listorcreatePelicula(nombre,id){
     const result = await findByIdPelicula.getPelicula(id);
     if(result==null){
@@ -93,6 +99,7 @@ async function listorcreatePelicula(nombre,id){
         return pelicula;
     }
 }
+
 module.exports ={
     listorcreate
 };

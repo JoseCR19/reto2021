@@ -1,5 +1,5 @@
-const utils = require('./utils/utils');
-const Responses = require('../src/utils/reponse');
+const utils = require('./servicios_externos/utils');
+const Responses = require('./servicios_externos/reponse');
 module.exports.obtenerDatos = async (event, context, callback) => {
   const nombre =`${event.pathParameters.name}`;
   const id = `${event.pathParameters.id}`;

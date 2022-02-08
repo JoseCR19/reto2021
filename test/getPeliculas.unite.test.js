@@ -1,4 +1,4 @@
-import * as peliculas from '../src/Peliculas/getPeliculas';
+import * as peliculas from '../src/servicios/Peliculas/getPeliculas';
 test('getPeliculas', async () => {
     const event = 'event';
     const context = 'context';
