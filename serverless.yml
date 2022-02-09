@@ -34,8 +34,8 @@ provider:
       Action:
         - dynamodb:*
       Resource:
-        - arn:aws:dynamodb:us-east-1:153592805274:table/Personas
-        - arn:aws:dynamodb:us-east-1:153592805274:table/Pelicula
+        - arn:aws:dynamodb:us-east-1:853955069629:table/Personas
+        - arn:aws:dynamodb:us-east-1:853955069629:table/Pelicula
 plugins:
   - serverless-offline
 functions:
@@ -46,25 +46,25 @@ functions:
           method: GET
           path: /api/reto/{name}/{id}
   getPersona:
-    handler: src/Persona/getPersonas.getPersonas
+    handler: src/servicios/Persona/getPersonas.getPersonas
     events:
       - httpApi:
           method: GET
           path: /api/reto/personas
   addPersona:
-    handler: src/Persona/addPersona.addPersonaPost
+    handler: src/servicios/Persona/addPersona.addPersonaPost
     events:
       - httpApi:
           method: POST
           path: /api/reto/personas
   getPelicula:
-    handler: src/Peliculas/getPeliculas.getPeliculas
+    handler: src/servicios/Peliculas/getPeliculas.getPeliculas
     events:
       - httpApi:
           method: GET
           path: /api/reto/peliculas
   addPelicula:
-    handler: src/Peliculas/addPelicula.addPeliculaPost
+    handler: src/servicios/Peliculas/addPelicula.addPeliculaPost
     events:
       - httpApi:
           method: POST

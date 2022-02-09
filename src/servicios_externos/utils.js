@@ -1,9 +1,9 @@
 const peliculaModel = require('../model/pelicula');
 const personaModel = require('../model/persona');
-const findByIdPersona = require('../Persona/getPersona');
-const personaAgregar = require('../Persona/addPersona');
-const findByIdPelicula = require('../Peliculas/getPelicula');
-const peliculaAgregar = require('../Peliculas/addPelicula');
+const findByIdPersona = require('../servicios/Persona/getPersona');
+const personaAgregar = require('../servicios/Persona/addPersona');
+const findByIdPelicula = require('../servicios/Peliculas/getPelicula');
+const peliculaAgregar = require('../servicios/Peliculas/addPelicula');
 const axios = require("axios");
 
 function buildPersona(data,id){
@@ -71,10 +71,10 @@ async function listorcreate(nombre,id){
     switch (nombre) {
         case "people":
             return await listorcreatePersona(nombre,id);
-            break;
+            
         case "films":
             return await listorcreatePelicula(nombre,id);
-            break;
+            
     }
 }
 
